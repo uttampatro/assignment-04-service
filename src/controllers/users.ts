@@ -1,6 +1,7 @@
 import e, { Request, Response } from 'express';
 import { UserService } from '../services';
 import bcrypt from 'bcryptjs';
+const jwt = require('jsonwebtoken');
 
 class UserController {
     registerUser = async (req: Request, res: Response) => {
@@ -20,11 +21,18 @@ class UserController {
                 image: image,
                 totalOrders: totalOrders,
             });
-            if (!user) {
-                return res.status(404).send('');
-            }
-            return res.send(user);
+            const token = jwt.sign(
+                {
+                    id: user.id,
+                    email: user.email,
+                    image: user.image,
+                    totalOrders: user.totalOrders,
+                },
+                process.env.TOKEN_SECRET
+            );
+            return res.json({ user, accessToken: token });
         } catch (error) {
+            console.log(error);
             return res.status(500).json({
                 success: false,
                 message: 'Something went wrong',
@@ -46,7 +54,16 @@ class UserController {
                 return res.status(400).send('Invalid password');
             }
 
-            return res.json(user);
+            const token = jwt.sign(
+                {
+                    id: user.id,
+                    email: user.email,
+                    image: user.image,
+                    totalOrders: user.totalOrders,
+                },
+                process.env.TOKEN_SECRET
+            );
+            return res.json({ user, accessToken: token });
         } catch (error) {
             return res.status(500).json({
                 success: false,
