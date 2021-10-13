@@ -4,7 +4,6 @@ import {
     PrimaryGeneratedColumn,
     Column,
     Unique,
-    OneToMany,
     BaseEntity,
     Index,
     CreateDateColumn,
@@ -38,3 +37,46 @@ export class User extends BaseEntity {
     @CreateDateColumn({ type: 'timestamp' })
     lastLogin: Date;
 }
+
+// export default (sequelize, DataTypes) => {
+//     const BaseUser = sequelize.define(
+//         'user',
+//         {
+//             user_id: {
+//                 type: DataTypes.INTEGER,
+//                 allowNull: false,
+//                 primaryKey: true,
+//             },
+//             user_name: {
+//                 type: DataTypes.STRING(250),
+//                 allowNull: false,
+//             },
+//             user_email: {
+//                 type: DataTypes.STRING(250),
+//                 allowNull: false,
+//             },
+//             user_password: {
+//                 type: DataTypes.STRING(250),
+//                 allowNull: false,
+//             },
+//             user_image: {
+//                 type: DataTypes.STRING(250),
+//             },
+//             total_orders: {
+//                 type: DataTypes.STRING(250),
+//                 allowNull: false,
+//             },
+//             created_at: {
+//                 type: Date(),
+//                 allowNull: false,
+//             },
+//         },
+//         {
+//             timestamps: true,
+//             underscored: true,
+//             tableName: 'user',
+//         }
+//     );
+
+//     return BaseUser;
+// };

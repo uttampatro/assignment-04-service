@@ -6,7 +6,7 @@
         "pretty": true,
         "sourceMap": true,
         "target": "es2017",
-        "outDir": "build",
+        "outDir": "/build",
         "lib": ["es6"],
         "resolveJsonModule": true,
         "types": ["node"],
@@ -15,6 +15,6 @@
         "emitDecoratorMetadata": true,
         "esModuleInterop": true
     },
-    // "include": ["src/*.ts", "src/**/*.ts", "src/**/*.js"],
+    "include": ["src/*.ts", "src/**/*.ts", "src/**/*.js"],
     "exclude": ["node_modules", "src/**/*.spec.ts", "src/**/*.spec.js"]
 }
